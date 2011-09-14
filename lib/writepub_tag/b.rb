@@ -1,12 +1,10 @@
 module WritepubEditor
   module WritepubTag
     
-    class SpanBold < Base
+    class B < Base
       
       def is_match
-        @node.name.downcase == "span" \
-        && @node.has_attribute?("style") \
-        && @node.get_attribute("style").downcase.match(/font\-weight/i) != nil
+        @node.name.downcase == "b"
       end
      
       def transform

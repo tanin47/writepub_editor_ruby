@@ -1,13 +1,19 @@
-module WritepubTag
-  class Base
-    
-    def self.is_match(node)
-      raise 'Not implemented'
+module WritepubEditor
+  module WritepubTag
+    class Base
+      
+      def initialize(node)
+        @node = node
+      end
+      
+      def is_match
+        raise 'Not implemented'
+      end
+      
+      def transform
+        raise 'Not implemented'
+      end
+      
     end
-    
-    def self.transform(node)
-      raise 'Not implemented'
-    end
-    
   end
 end
