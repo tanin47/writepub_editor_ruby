@@ -6,8 +6,8 @@ module WritepubEditor
   include WritepubTag
   
   @preprocessing_rules = [Preprocessing::Br,
-                          Preprocessing::Img,
-                          Preprocessing::Iframe
+                          Preprocessing::Iframe,
+                          Preprocessing::Img
                           ]
 
   @tranformations = [ WritepubTag::A,

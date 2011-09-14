@@ -5,13 +5,16 @@ module WritepubEditor
       
       def self.process(html)
         
-        html.gsub(/<iframe([^>]*)>/i) { |iframe|
+        html.gsub(/<(iframe)([^>]*)>/i) { |iframe|
         
-          attrs = "#{$1}".gsub(/([a-zA-Z]+)=[']?([^'"> ]+)[']?/) { |attr|
-             "#{$1}=\"#{$2}\""
+          tag = $1
+          attrs = $2
+          
+          attrs = "#{attrs}".gsub(/ ([a-zA-Z]+)=[']?([^'"> ]+)[']?/) { |attr|
+             " #{$1}=\"#{$2}\""
           }
           
-          attrs = "#{attrs}".gsub(/[a-zA-Z]+/) { |attr|
+          attrs = "#{attrs}".gsub(/ [a-zA-Z]+/) { |attr|
        
             if "#{$'}".match(/\A=/) == nil
               "#{attr}=\"\""
@@ -20,7 +23,7 @@ module WritepubEditor
             end
           }
           
-          "<iframe#{attrs}>"
+          "<#{tag}#{attrs}>"
         }
         
       end

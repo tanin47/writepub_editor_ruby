@@ -25,8 +25,8 @@ describe '<iframe>' do
   
   it "solves combination correctly" do
     
-    html = '<iframe allowfullscreen height=390 dosomething width=\'200\'></iframe>'
-    WritepubEditor::Preprocessing::Iframe.process(html).should == '<iframe allowfullscreen="" height="390" dosomething="" width="200"></iframe>'
+    html = '<iframe src="http://www.youtube.com/" allowfullscreen height=390 dosomething width=\'200\'></iframe>'
+    WritepubEditor::Preprocessing::Iframe.process(html).should == '<iframe src="http://www.youtube.com/" allowfullscreen="" height="390" dosomething="" width="200"></iframe>'
     
   end
 
