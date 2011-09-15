@@ -13,7 +13,7 @@ describe 'Other' do
       
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should_not include("<h1>")
     new_html.should_not include("<script>")
     new_html.should_not include("<div>")
@@ -25,6 +25,17 @@ describe 'Other' do
     new_html.should include("Header")
     new_html.should include("alert('test');")
     new_html.should include("something")
+    
+  end
+  
+  it "can strip out html tags" do
+     
+    html = <<-HTML
+      Test <i>some</i> text with <b>Header</b><img src="http://wwww.google.com">aaaaaa
+    HTML
+    
+    new_html = WritepubEditor::Base.new(html)
+    new_html.text.should == "Test some text with Headeraaaaaa"
     
   end
   

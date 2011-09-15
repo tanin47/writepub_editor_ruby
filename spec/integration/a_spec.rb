@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe '<b>' do
+describe '<a>' do
   
   it "removes all attributes except href" do
     
@@ -8,7 +8,7 @@ describe '<b>' do
       Test some text with <a href="http://www.google.com" style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">link</a>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include('<a href="http://www.google.com">link</a>')
     
   end
@@ -19,7 +19,7 @@ describe '<b>' do
       Test some text with <a href="ftp://www.google.com" style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">link</a>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include('Test some text with <a href="ftp://www.google.com">link</a>')
     
   end
@@ -30,7 +30,7 @@ describe '<b>' do
       Test some text with <a href="http://www.google.com" style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">link</a>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include('Test some text with <a href="http://www.google.com">link</a>')
     
   end
@@ -41,7 +41,7 @@ describe '<b>' do
       Test some text with <a href="https://www.google.com" style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">link</a>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include('Test some text with <a href="https://www.google.com">link</a>')
     
   end
@@ -52,7 +52,7 @@ describe '<b>' do
       Test some text with <a href="javascript:alert('hi');" style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">link</a>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include('Test some text with link')
     
   end
@@ -63,7 +63,7 @@ describe '<b>' do
       Test some text with <a href="http://www.google.com" style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">  </a>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == 'Test some text with'
     
   end

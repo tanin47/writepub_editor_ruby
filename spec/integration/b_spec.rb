@@ -8,7 +8,7 @@ describe '<b>' do
       Test some text with <b style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">bold text</b>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include("<b>bold text</b>")
     
   end
@@ -19,7 +19,7 @@ describe '<b>' do
       Test some text with <b style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">  </b>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == 'Test some text with'
     
   end

@@ -4,7 +4,7 @@ module WritepubEditor
     class Br < Base
       
       def self.process(html)
-        html.gsub(/<(br([.]*[^\/])?)>/i,'<\1 />')
+        html.gsub(/<(br([^>]*[^\/])?)>/i,'<\1 />')
       end
       
     end

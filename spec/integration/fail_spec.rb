@@ -8,7 +8,7 @@ describe 'Failure' do
       Test some text with <strong style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">strong</strog>
     HTML
     
-    lambda { WritepubEditor.enforce_rules_on(html) }.should raise_error
+    lambda { WritepubEditor::Base.new(html).to_s }.should raise_error
     
   end
   

@@ -8,7 +8,7 @@ describe '<i>' do
       Test some text with <i style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">italic</i>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include("<i>italic</i>")
     
   end
@@ -20,7 +20,7 @@ describe '<i>' do
       Test some text with <i style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">  </i>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == 'Test some text with'
     
   end

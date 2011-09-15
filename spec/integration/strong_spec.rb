@@ -8,7 +8,7 @@ describe '<strong>' do
       Test some text with <strong style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">strong</strong>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include("<b>strong</b>")
     
   end
@@ -19,7 +19,7 @@ describe '<strong>' do
       Test some text with <strong style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">  </strong>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == 'Test some text with'
     
   end

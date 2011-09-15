@@ -13,3 +13,4 @@ Allow tags
 * <img> must be accompanied with the attribute 'src'
 * <br/> and <br> with no attributes
 * <p> is allowed
+* <iframe> from youtube is allowed

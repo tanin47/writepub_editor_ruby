@@ -8,7 +8,7 @@ describe 'span_bold' do
       Test some text with <span style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">bold text</span>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include("<b>bold text</b>")
     
   end
@@ -19,7 +19,7 @@ describe 'span_bold' do
       Test some text with <span style="width:100px;height:100px;" onclick="sdfsdsfsd">not bold text</span>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == "Test some text with not bold text"
     
   end
@@ -30,7 +30,7 @@ describe 'span_bold' do
       Test some text with <span style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">  </span>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == 'Test some text with'
     
   end

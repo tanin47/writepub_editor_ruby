@@ -4,7 +4,8 @@ module WritepubEditor
     class Img < Base
       
       def is_match
-        @node.name.downcase == "img"
+        @node.name.downcase == "img" \
+        && @node.has_attribute?("src")
       end
      
       def transform

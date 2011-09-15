@@ -4,7 +4,9 @@ module WritepubEditor
     class A < Base
       
       def is_match
-        @node.name.downcase == "a"
+        @node.name.downcase == "a" \
+        && @node.has_attribute?("href") \
+        && @node.get_attribute("href").match(/^(https?|ftp)/i) != nil
       end
      
       def transform
@@ -13,14 +15,6 @@ module WritepubEditor
         
         @node.name = "a"
         @node.remove_all_attributes(:href)
-        
-        href = @node.get_attribute("href")
-        
-        if href.match(/^(https?|ftp)/i) == nil
-          @node.extract_inside_out
-          @node.remove
-        end
-        
       end
     end
     

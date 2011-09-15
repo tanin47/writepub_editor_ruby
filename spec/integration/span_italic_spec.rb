@@ -8,7 +8,7 @@ describe 'Span(italic)' do
       Test some text with <span style="width:100px;font-style:italic;" onclick="sdfsdsfsd">italic text</span>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include("<i>italic text</i>")
     
   end
@@ -19,7 +19,7 @@ describe 'Span(italic)' do
       Test some text with <span style="width:100px;font-style: underlined italic;" onclick="sdfsdsfsd">italic text</span>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include("<i>italic text</i>")
 
   end
@@ -30,7 +30,7 @@ describe 'Span(italic)' do
       Test some text with <span style="width:100px;height:100px;font-style: underlined;" onclick="sdfsdsfsd">not italic text</span>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == "Test some text with not italic text"
     
   end
@@ -41,7 +41,7 @@ describe 'Span(italic)' do
       Test some text with <span style="width:100px;font-style:italic;" onclick="sdfsdsfsd">  </span>
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == 'Test some text with'
     
   end

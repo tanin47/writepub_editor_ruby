@@ -8,7 +8,7 @@ describe '<iframe> youtube' do
       Test some text with rrrrrrrr<IFRAME style="xccc" onclick="yyyyy" height=390 src="http://www.youtube.com/embed/1Q0UQaKeMuQ" frameBorder=0 width=480 allowfullscreen></IFRAME> easdgwewgweg
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should include('http://www.youtube.com/embed/1Q0UQaKeMuQ')
     new_html.should include('<iframe')
     
@@ -21,7 +21,7 @@ describe '<iframe> youtube' do
       Test some text with rrrrrrrr<IFRAME style="xccc" onclick="yyyyy" height=390 src="http://www.google.com/embed/1Q0UQaKeMuQ" frameBorder=0 width=480 allowfullscreen></IFRAME> easdgwewgweg
     HTML
     
-    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html = WritepubEditor::Base.new(html).to_s
     new_html.should == 'Test some text with rrrrrrrr easdgwewgweg'
     
   end
