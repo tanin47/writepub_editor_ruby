@@ -8,6 +8,9 @@ module WritepubEditor
       end
      
       def transform
+        
+        return if remove_node_if_empty?
+        
         @node.name = "i"
         @node.remove_all_attributes
       end

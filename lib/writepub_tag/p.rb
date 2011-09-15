@@ -9,7 +9,7 @@ module WritepubEditor
      
       def transform
         
-        return if !is_match
+        return if remove_node_if_empty?
         
         next_sibling = @node.next_sibling
         parent = @node.parent

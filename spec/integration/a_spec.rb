@@ -57,4 +57,15 @@ describe '<b>' do
     
   end
   
+  it "removes node if empty" do
+    
+    html = <<-HTML
+      Test some text with <a href="http://www.google.com" style="width:100px;font-weight:bold;" onclick="sdfsdsfsd">  </a>
+    HTML
+    
+    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html.should == 'Test some text with'
+    
+  end
+  
 end

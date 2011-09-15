@@ -35,4 +35,15 @@ describe 'Span(italic)' do
     
   end
   
+  it "removes node if empty" do
+    
+    html = <<-HTML
+      Test some text with <span style="width:100px;font-style:italic;" onclick="sdfsdsfsd">  </span>
+    HTML
+    
+    new_html = WritepubEditor.enforce_rules_on(html)
+    new_html.should == 'Test some text with'
+    
+  end
+  
 end

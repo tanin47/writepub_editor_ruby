@@ -14,6 +14,16 @@ module WritepubEditor
         raise 'Not implemented'
       end
       
+      def remove_node_if_empty?
+        
+        if @node.children.length == 0
+          @node.remove
+          return true
+        end
+        
+        return false
+      end
+      
     end
   end
 end

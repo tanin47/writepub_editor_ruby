@@ -21,7 +21,8 @@ module WritepubEditor
                       WritepubTag::SpanBold,
                       WritepubTag::SpanItalic,
                       WritepubTag::Strong,
-                      WritepubTag::Youtube,
+                      WritepubTag::Text,
+                      WritepubTag::Youtube
                       ]
   
   def text(html)
@@ -37,7 +38,7 @@ module WritepubEditor
     }
     
     doc = Nokogiri::XML( html ) { |config| 
-      config.strict
+      config.strict.noblanks
     }
     
     traverse(doc.root)
@@ -48,7 +49,9 @@ module WritepubEditor
   
   def traverse(node)
     
-    children = node.children # get it first, because node might be deleted
+    node.children.each { |c|
+      traverse(c)
+    }
     
     transformed = false
     @tranformations.each { |tag|  
@@ -60,16 +63,12 @@ module WritepubEditor
       transformed = true
     }
     
-    if transformed == false \
-        and node.instance_of?(Nokogiri::XML::Element)
-      
+    if transformed == false
       node.extract_inside_out
       node.remove
     end
     
-    children.each { |c|
-      traverse(c)
-    }
+    
   end
   
   extend self
