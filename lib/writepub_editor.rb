@@ -35,7 +35,7 @@ module WritepubEditor
       }
       
       @doc = Nokogiri::XML( html ) { |config| 
-        config.strict.noblanks
+        config.noblanks
       }
       
       traverse(@doc.root)

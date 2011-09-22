@@ -10,7 +10,7 @@ module WritepubEditor
      
       def transform
         
-        if @node.content.strip == ""
+        if @node.content.gsub(/[ \t]/,"") == ""
           @node.remove
         end
         

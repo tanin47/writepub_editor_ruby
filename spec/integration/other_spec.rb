@@ -31,11 +31,22 @@ describe 'Other' do
   it "can strip out html tags" do
      
     html = <<-HTML
-      Test <i>some</i> text with <b>Header</b><img src="http://wwww.google.com">aaaaaa
+      Test <i>some</i> text with <b>Header</b>
+
+
+      <img src="http://wwww.google.com">aaaaaa
+      &nbsp;
+      
+      
+      
+      
     HTML
     
     new_html = WritepubEditor::Base.new(html)
-    new_html.text.should == "Test some text with Headeraaaaaa"
+    new_html.text.should == "Test some text with Header
+
+
+      aaaaaa"
     
   end
   
